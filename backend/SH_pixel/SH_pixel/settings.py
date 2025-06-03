@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'photos_api',
     'users_auth',
@@ -149,17 +150,27 @@ CORS_ALLOW_ALL_ORIGINS = True
 # ]
 
 # REST Framework configuration
+# photogallery_backend/settings.py
+
+# photogallery_backend/settings.py
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication', # Keep if using browsable API
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.AllowAny', # <--- THIS IS CRUCIAL FOR PUBLIC ENDPOINTS
+        # OR, if you want authenticated by default, make sure your specific views
+        # (like request-otp) explicitly set AllowAny.
+        # 'rest_framework.permissions.IsAuthenticated', # ONLY if all endpoints require auth by default
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
     ],
 }
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
