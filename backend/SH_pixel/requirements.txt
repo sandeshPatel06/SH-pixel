@@ -1,0 +1,23 @@
+# Django and core dependencies
+Django==5.2.1
+djangorestframework==3.15.1
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
+
+# Admin UI
+django-jazzmin==2.6.0
+
+# Authentication
+djangorestframework-authtoken==1.0.0
+
+# SMTP email support (optional but recommended if using Gmail)
+# You don't need an extra package for SMTP with Gmail
+
+# WSGI server (use for production)
+gunicorn==22.0.0
+
+# Optional: For managing environment variables
+python-decouple==3.8
+
+# If using Pillow for image upload fields
+Pillow==10.3.0
